@@ -21,6 +21,7 @@ Entity::Entity( EntityType type, Vector2D pos, std::string entityName)
             color = Color::Blue(); 
             size = 8.0f; 
             break; 
+
         case EntityType::CARNIVORE: 
             mEnergy = 100.0f; 
             mMaxEnergy = 200.0f; 
@@ -28,6 +29,7 @@ Entity::Entity( EntityType type, Vector2D pos, std::string entityName)
             color = Color::Red(); 
             size = 12.0f; 
             break; 
+
         case EntityType::PLANT: 
             mEnergy = 50.0f; 
             mMaxEnergy = 100.0f; 
@@ -40,6 +42,7 @@ Entity::Entity( EntityType type, Vector2D pos, std::string entityName)
     mAge = 0; 
     mIsAlive = true; 
     mVelocity = GenerateRandomDirection(); 
+
     std::cout << "🌱Entité créée: " << name << " à (" << position.x << ", " << position.y<<")"<< std::endl;
  } 
 
@@ -67,6 +70,7 @@ Entity::~Entity() {
 //⚙MISE À JOUR PRINCIPALE 
 void Entity::Update(float deltaTime) { 
     if ( !mIsAlive) return; 
+
     // PROCESSUS DE VIE 
     ConsumeEnergy(deltaTime); 
     Age( deltaTime); 
@@ -92,8 +96,7 @@ void Entity::Move(float deltaTime) {
  void Entity::Eat( float energy) 
  { 
     mEnergy += energy; 
-    if ( mEnergy > mMaxEnergy)
-    { 
+    if ( mEnergy > mMaxEnergy) { 
          mEnergy = mMaxEnergy; 
     } 
        std::cout << "🍽 " << name << " mange et gagne " << energy << " énergie" << std::endl;
@@ -169,14 +172,17 @@ Color Entity::CalculateColorBasedOnState() const {
 void Entity::Render( SDL_Renderer* renderer) const { 
     if ( !mIsAlive) return; 
     Color renderColor = CalculateColorBasedOnState(); 
+
     SDL_FRect rect = { 
         position.x - size / 2.0f, 
         position.y - size / 2.0f, 
         size, 
         size 
     }; 
+
     SDL_SetRenderDrawColor( renderer, renderColor.r, renderColor.g, renderColor.b, renderColor.a);
     SDL_RenderFillRect( renderer, &rect); 
+    
     // Indicateur d'énergie (barre de vie) 
     if ( mType != EntityType::PLANT) { 
         float energyBarWidth = size * GetEnergyPercentage(); 

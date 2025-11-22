@@ -70,6 +70,7 @@ void Ecosystem::SpawnFood(int count) {
 // SUPPRESSION DES ENTITÉS MORTES 
 void Ecosystem::RemoveDeadEntities() { 
     int initialCount = mEntities.size(); 
+
     mEntities.erase( 
         std::remove_if(mEntities.begin(), mEntities.end(), 
             [](const std::unique_ptr<Entity>& entity) {  
@@ -77,6 +78,7 @@ void Ecosystem::RemoveDeadEntities() {
             }), 
         mEntities.end() 
     ); 
+    
     int removedCount = initialCount - mEntities.size(); 
     if (removedCount > 0) { 
         mStats.deathsToday += removedCount; 
@@ -84,24 +86,24 @@ void Ecosystem::RemoveDeadEntities() {
  } 
 
 // GESTION DE LA REPRODUCTION 
-void Ecosystem::HandleReproduction() { 
-    std::vector<std::unique_ptr<Entity>> newEntities; 
-    for (auto& entity : mEntities) { 
-        if (entity->CanReproduce() && mEntities.size() < mMaxEntities) { 
-            auto baby = entity->Reproduce(); 
-            if (baby) { 
-                 newEntities.push_back(std::move(baby)); 
-                mStats.birthsToday++; 
-
-    // Ajout des nouveaux entités 
-    for (auto& newEntity : newEntities) { 
-        mEntities.push_back(std::move(newEntity)); 
+void Ecosystem::HandleReproduction() {
+    std::vector<std::unique_ptr<Entity>> newEntities;
+    
+    for (auto& entity : mEntities) {
+        if (entity->CanReproduce() && mEntities.size() < mMaxEntities) {
+            auto baby = entity->Reproduce();
+            if (baby) {
+                newEntities.push_back(std::move(baby));
+                mStats.birthsToday++;
+            }
+        }
     }
+    
+    // Ajout des nouveaux entités
+    for (auto& newEntity : newEntities) {
+        mEntities.push_back(std::move(newEntity));
     }
-        } 
-            } 
-               
- } 
+}
 
 // 🍽 GESTION DE L'ALIMENTATION 
 void Ecosystem::HandleEating() { 

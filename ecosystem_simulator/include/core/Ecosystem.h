@@ -61,9 +61,9 @@ public:
 private: 
     //MÉTHODES PRIVÉES 
     void UpdateStatistics(); 
-    void SpawnRandomEntity(EntityType type); 
+    void SpawnRandomEntity( EntityType type); 
     Vector2D GetRandomPosition() const; 
-    void HandlePlantGrowth(float deltaTime); 
+    void HandlePlantGrowth( float deltaTime); 
 }; 
 
 

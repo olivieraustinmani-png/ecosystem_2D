@@ -20,6 +20,7 @@ public:
     // 🏗 CONSTRUCTEUR/DESTRUCTEUR 
     Window(const std::string& title, float width, float height); 
     ~Window(); 
+    
     // ⚙INITIALISATION 
     bool Initialize(); 
     void Shutdown(); 
