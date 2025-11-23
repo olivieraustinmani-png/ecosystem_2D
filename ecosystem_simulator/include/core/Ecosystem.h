@@ -9,6 +9,7 @@ namespace Ecosystem {
 namespace Core { 
 
 class Ecosystem { 
+    
 private: 
     // ÉTAT INTERNE 
     std::vector<std::unique_ptr<Entity>> mEntities; 
