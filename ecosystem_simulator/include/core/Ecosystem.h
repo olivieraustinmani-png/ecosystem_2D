@@ -1,9 +1,11 @@
 #pragma once 
+#include "core/Ecosystem.h"
 #include "Entity.h" 
 #include "Structs.h" 
 #include <vector> 
 #include <memory> 
 #include <random> 
+#include <SDL3/SDL.h>
 
 namespace Ecosystem { 
 namespace Core { 

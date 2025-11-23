@@ -1,7 +1,7 @@
 #pragma once
-
-#include "../Graphics/Window.hpp"
-#include "Ecosystem.hpp"
+#include "core/GameEngine.h"
+#include "Graphics/Window.h"
+#include "Ecosystem.h"
 #include <chrono>
 
 namespace Ecosystem {

@@ -1,7 +1,8 @@
 #pragma once 
 #include <SDL3/SDL.h> 
 #include <string> 
-#include "../Core/Structs.h" 
+#include "core/Structs.h" 
+#include "Graphics/Window.hpp"
 
 namespace Ecosystem { 
 namespace Graphics { 
