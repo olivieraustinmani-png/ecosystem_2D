@@ -1,5 +1,5 @@
 #pragma once 
-#include "core/Entity.h"
+#include "Core/Entity.h"
 #include "Structs.h" 
 #include <SDL3/SDL.h> 
 #include <memory> 

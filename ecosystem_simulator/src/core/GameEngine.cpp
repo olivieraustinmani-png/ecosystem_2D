@@ -1,4 +1,4 @@
-#include "Core/GameEngine.hpp"
+#include "Core/GameEngine.h"
 #include <iostream>
 #include <sstream>
 
@@ -86,12 +86,12 @@ void GameEngine::HandleInput(SDL_Keycode key) {
             std::cout << (mIsPaused ? "⏸️ Simulation en pause" : "▶️ Simulation reprise") << std::endl;
             break;
             
-        case SDLK_r:
+        case SDLK_R:
             mEcosystem.Initialize(20, 5, 30);
             std::cout << "🔄 Simulation réinitialisée" << std::endl;
             break;
             
-        case SDLK_f:
+        case SDLK_F:
             mEcosystem.SpawnFood(10);
             std::cout << "🍎 Nourriture ajoutée" << std::endl;
             break;

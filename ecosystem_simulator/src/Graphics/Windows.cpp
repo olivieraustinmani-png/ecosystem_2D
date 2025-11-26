@@ -1,4 +1,4 @@
-#include "Graphics/Window.hpp"
+#include "Graphics/Window.h"
 #include <iostream>
 
 namespace Ecosystem {

@@ -2,7 +2,7 @@
 #include <cmath> 
 #include <iostream> 
 #include <algorithm> 
-#include <SDL3/DSL.h>
+#include <SDL3/SDL.h>
 
 namespace Ecosystem { 
 namespace Core { 

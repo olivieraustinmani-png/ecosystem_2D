@@ -1,5 +1,5 @@
 #pragma once
-#include "core/GameEngine.h"
+#include "Core/GameEngine.h"
 #include "Graphics/Window.h"
 #include "Ecosystem.h"
 #include <chrono>
