@@ -62,9 +62,9 @@ g++ -std=c++17 src/core/.cpp src/graphics/.cpp -IC:/SDL3/include -LC:/SDL3/lib/x
 ---
 
 
-
+## 🏗 **Architecture du Projet**
 ## Structure du Projet
-
+```
 
 ecosystem_simulator/
 ├── include/
@@ -86,8 +86,7 @@ ecosystem_simulator/
 ├── assets/
 │   └── (futures textures)
 └── README.md
-
-
+```
 
 
 
