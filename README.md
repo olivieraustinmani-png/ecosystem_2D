@@ -148,7 +148,7 @@ ecosystem_simulator/
 
 ## Auteur
 
-## **Olivier Austin Mani** 
+## **Steve Akoa** 
 - **Étudiant en Art Numerique à l'ENSPY1 (Ecole National Superieur Polytechnique de Yaounde).
 "C'est un projet universitaire de simulation d'écosystème!"**
 
