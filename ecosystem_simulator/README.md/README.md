@@ -49,8 +49,9 @@ g++ -std=c++17 src/core/.cpp src/graphics/.cpp -IC:/SDL3/include -LC:/SDL3/lib/x
 
 ## Exécution
 ```bash
-./ecosystem
+./ecosystem_simulator
 ```
+là aussi j'ai du me passser de l'exécution du prof!
 
 ## Contrôles
 - `ESPACE` : Pause/Reprise
