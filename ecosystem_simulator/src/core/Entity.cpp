@@ -197,6 +197,114 @@ void Entity::Render( SDL_Renderer* renderer) const {
         SDL_RenderFillRect( renderer, &energyBar); 
     }
  } 
+
+// implémentation de la fonction pour la gestion de la fonction de silulation
+// Cette fonction permet de modifier la vélocvité inetrne de l'entité
+
+void Entity::ApplyForce(vector2D ApplyForce) { //APllication une force physique à l'entite (simulation de movement)
+    mVelocity = mVelocity + force;  //addition vevctoriel de la force à la velocité actuelle
+    float maxpSped = ( mType == Entitype::CARNIVORE) ? 120.0f : 80.0f;
+    float currebtSpeed = mVelocity.Length();
+
+    // Condition d'evaluation de la vitesse de déplacement: si maximum → ramener au minimum
+    if ( currentSpeed > maxSpeed) {
+        mVelocity = mVelocity * ( maxSpeed / currentSpeed);
+    } 
+}
+
+// Cette fonction permet de maintenir l'entite dans les limites du monde simule
+// Evite la disparition des entitites de l'ecran
+Vector2D Entity::StayInBounds ( float worldWidth, float worldHeight) const {
+    Vector steering ( 0.0f, 0.0f);
+    float margin = 30.0f; //zone tampon avant les bord
+
+    // condition detection des bords gauche et droite:
+     // Si trop près du bord gauche, force positive vers la droite
+    // Si trop près du bord droit, force négative vers la gauche
+    if ( position.x < margin) steering.x = margin;
+    else if ( position.x > worldWidth - margin) steering.x = -margin;
+    
+    // condition de detection des bords hauts et bas!
+    // Pincipee  est le  meme  que  pour les bords gauches et droites
+    if ( position.y < margin) steering.y = margin;  
+    else if ( position.y > worldHeight - margin) steering.y = -margin;
+    
+    // AMPLIFICATION : La force est multipliée pour être plus efficace
+    return steering * 3.0f;
+}
+
+// Fonction permettant aux entite ( animaux) d'echaper aux predateur: fonction de survi
+Vector2D Entity::AvoidPredators(const std::vector<Entity>& predators) const {
+
+    // Selection ou flitrage : Seuls les herbivores ont besoin de fuir
+    // Les carnivores et plantes ne sont pas concerné!
+    if ( mType != EntityType::HERBIVORE) {
+        return Vector2D(0.0f, 0.0f);
+    }
+    
+    Vector2D avoidance(0.0f, 0.0f);
+    
+    // ANALYSE DES PRÉDATEURS : Parcours de tous les prédateurs potentiels
+    for ( const auto& predator : predators) {
+        // VÉRIFICATION : Le prédateur doit être vivant et de type carnivore
+        if ( predator.IsAlive() && predator.mType == EntityType::CARNIVORE) {
+            Vector2D toPredator = predator.position - position;
+            float distance = toPredator.Length();
+            
+            // ZONE DE DANGER : Si le prédateur est dans un rayon de 80 unités
+            if ( distance < 80.0f && distance > 0) {
+                // CALCUL DE FUITE : Direction opposée au prédateur
+                // L'intensité augmente avec la proximité
+                Vector2D fleeDirection = -toPredator.Normalized();
+                avoidance = avoidance + fleeDirection * (80.0f - distance);
+            }
+        }
+    }
+    
+    return avoidance;
+}
+
+
+// Fonction SeekFood prend en charge la recherche de nutriment pour la survie et le maintien d'energie
+
+Vector2D Entity::SeekFood(const std::vector<Food>& foodSources) const
+{
+    // EXCLUSION : Les plantes ne cherchent pas de nourriture (photosynthèse)
+    if ( mType == EntityType::PLANT) {
+        return Vector2D(0.0f, 0.0f);
+    }
+    
+    Vector2D seeking( 0.0f, 0.0f);
+    float closestDist = 1000.0f; // Distance initiale très grande
+    Vector2D bestDirection( 0.0f, 0.0f);
+    
+    // RECHERCHE DE NOURRITURE : Analyse de toutes les sources disponibles
+    for ( const auto& food : foodSources) {
+        Vector2D toFood = food.position - position;
+        float dist = toFood.Length();
+        
+        // CHAÎNE ALIMENTAIRE :
+        // - Herbivores mangent des plantes
+        // - Carnivores mangent des herbivores
+        bool isGoodFood = ( mType == EntityType::HERBIVORE && food.IsPlant()) ||
+                         ( mType == EntityType::CARNIVORE && food.IsHerbivore());
+        
+        // SÉLECTION : On garde la nourriture valide la plus proche
+        if (isGoodFood && dist < closestDist) {
+            closestDist = dist;
+            bestDirection = toFood.Normalized();
+        }
+    }
+    
+    // ACTION : Se déplacer vers la nourriture si elle est assez proche
+    if ( closestDist < 150.0f) {
+        seeking = bestDirection * 2.0f;
+    }
+    
+    return seeking;
+}
+
+
  
 } // namespace Core 
 } // namespace Ecosystem

@@ -1,0 +1,46 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-sdl3-mingw64",
+            "type": "shell",
+            "command": "C:/msys64/usr/bin/bash.exe",
+            "args": [
+                "-lc",
+                "C:/msys64/mingw64/bin/gcc.exe main.c -o programme.exe `C:/msys64/mingw64/bin/sdl3-config --cflags --libs`"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build"
+        },
+
+        {
+            "label": "build-sdl3-ucrt64",
+            "type": "shell",
+            "command": "C:/msys64/usr/bin/bash.exe",
+            "args": [
+                "-lc",
+                "C:/msys64/ucrt64/bin/gcc.exe main.c -o programme.exe $(C:/msys64/ucrt64/bin/pkgconf --cflags --libs SDL3)"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build"
+        },
+
+        {
+            "label": "build-sdl3-clang64",
+            "type": "shell",
+            "command": "C:/msys64/usr/bin/bash.exe",
+            "args": [
+                "-lc",
+                "C:/msys64/clang64/bin/clang.exe main.c -o programme.exe `C:/msys64/clang64/bin/sdl3-config --cflags --libs`"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build"
+        }
+    ]
+}

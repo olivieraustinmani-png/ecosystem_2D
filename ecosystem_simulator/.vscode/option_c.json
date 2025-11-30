@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-sdl3-full",
+            "type": "shell",
+            "command": "C:/msys64/usr/bin/bash.exe",
+            "args": [
+                "-lc",
+                "C:/msys64/mingw64/bin/gcc.exe *.c -o programme.exe `C:/msys64/mingw64/bin/sdl3-config --cflags --libs` `C:/msys64/mingw64/bin/sdl3_mixer-config --cflags --libs 2>/dev/null || echo ''`"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "isBackground": false
+        },
+
+        {
+            "label": "run-programme",
+            "type": "shell",
+            "command": "C:/msys64/usr/bin/bash.exe",
+            "args": [
+                "-lc",
+                "./programme.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "test"
+        }
+    ]
+}

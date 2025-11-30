@@ -79,3 +79,5 @@ private:
 
 } // namespace Core 
 } // namespace Ecosystem
+
+//-IC:/msys64/ucrt64/include/SDL3 -LC:/msys64/ucrt64/lib -lSDL3
