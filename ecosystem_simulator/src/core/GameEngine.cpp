@@ -110,7 +110,8 @@ void GameEngine::HandleInput(SDL_Keycode key) {
 
 // 🔄 MISE À JOUR
 void GameEngine::Update(float deltaTime) {
-    mEcosystem.Update(deltaTime);
+    mEcosystem -> Update(deltaTime);//appel de la fonction
+
     
     // Affichage occasionnel des statistiques
     static float statsTimer = 0.0f;

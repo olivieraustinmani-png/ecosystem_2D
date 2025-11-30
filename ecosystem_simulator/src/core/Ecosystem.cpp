@@ -192,5 +192,22 @@ void Ecosystem::Render(SDL_Renderer* renderer) const {
     }
 } 
 
+// mes implémentation
+
+void Ecosystem::AddEntity(std::unique_ptr<Entity> entity) {
+    if (mEntities.size() < mMaxEntities && entity) {
+        mEntities.push_back(std::move(entity));
+    }
+}
+
+void Ecosystem::AddFood(Vector2D position, float energy) {
+   if (mFoodSources.size() < 100) {
+    mFoodSources.emplace_back(positon, energy);
+   }
+}
+
+
+
+
 } // namespace Core 
 } // namespace Ecosystem
