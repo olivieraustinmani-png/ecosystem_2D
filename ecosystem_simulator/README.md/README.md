@@ -141,8 +141,7 @@ ecosystem_simulator/
 
 - *Ajour des fichers 'json'dans l'arborescence pour pouvoir compiler le programme suite à des multiple echec survenus lors des multiples tentative.*
 
-- *En suite, j'ai commencé à implementer depuis un moment déja les fonctions qu'il fallait dans les fichiers .cpp à l'instar de Entity.cp et Ecosytem.cpp.* 
-- *Dans Entity.cpp ont été implémenté les fonctions RemoveDeadENtities(): qui traite du netoyage des entité mortes en creeant une nouvelle liste d'entité ne comporte que des vivantes; HandleEating(): prend en charge la gestion de la chaine alimentaire, elle gère la stabilité de la chaine alimentaire; SpawnRandomEntity(): permet la génération des entités et de l'écosystem.*
+- *En suite, j'ai commencé à implementer depuis un moment déja les fonctions qu'il fallait dans les fichiers .cpp à l'instar de Entity.cp* 
 
 - *Dans Entity.cpp/ ApplyForce(Vector2D force) prend en charge l'application des forces ^hysique sur les entités à fin de rendre les mouvement entre prédateur et proiees rélistes; StayInBounds(float wordlWidth, float worldHeight) a pour role ou fonction de maintenir les entites dans le cadre de simulation, verifie de gauche à droite les coins de l'eespace représentant le monde virtuel; AvouidPredators(const std::vector<Entity>&predators) simule le comportement defensif chez les herbivores qui representent des proies face aux carnivores; SeekFood(const std::vector<Food>& foodSources) simule le comportement alimentaire du monde réel dans notre monde virtuel selon le respect de la chaine alimentaire.*
 
