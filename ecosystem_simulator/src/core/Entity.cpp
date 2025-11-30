@@ -201,8 +201,10 @@ void Entity::Render( SDL_Renderer* renderer) const {
 // implémentation de la fonction pour la gestion de la fonction de silulation
 // Cette fonction permet de modifier la vélocvité inetrne de l'entité
 
-void Entity::ApplyForce(vector2D ApplyForce) { //APllication une force physique à l'entite (simulation de movement)
-    mVelocity = mVelocity + force;  //addition vevctoriel de la force à la velocité actuelle
+//APllication une force physique à l'entite (simulation de movement)
+void Entity::ApplyForce(vector2D ApplyForce) { 
+    //addition vevctoriel de la force à la velocité actuelle
+    mVelocity = mVelocity + force;  
     float maxpSped = ( mType == Entitype::CARNIVORE) ? 120.0f : 80.0f;
     float currebtSpeed = mVelocity.Length();
 
